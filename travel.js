@@ -12,21 +12,16 @@ function startTravelSearch() {
 
   console.log(url);
 
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "GET", url, false ); // false for synchronous request
-  xmlHttp.send( null );
-  return xmlHttp.responseText;
-}
-
-$(document).on('click', '#subscribeBtn', function() {
   $.ajax({
-
-    url: '/users/subscribe',
+    url: 'https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=bYIxdGBOq7VRuiWIGsvwL12PDMV9TZmU&origin=BOS&destination=LON&departure_date=2015-10-25&return_date=2016-01-10&number_of_results=10',
     type: 'GET',
     success: function () {
-      console.log('subscribed');
-      $("#accountUnsubscribed").hide();
-      $("#accountSubscribed").show();
+      console.log('sucess');
     }
   });
-});
+  //var xmlHttp = new XMLHttpRequest();
+  //xmlHttp.open( "GET", url, false ); // false for synchronous request
+  //xmlHttp.send( null );
+  //return xmlHttp.responseText;
+}
+
