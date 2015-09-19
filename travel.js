@@ -18,12 +18,14 @@ function startTravelSearch() {
   $.ajax({
     url: url,
     type: 'GET',
-    success: function () {
-      console.log('success');
+    success: function (data) {
+      console.log('GET request successful');
+      console.log(data);
+      
     }
   });
   //var xmlHttp = new XMLHttpRequest();
-  //xmlHttp.open( "GET", url, false ); // false for synchronous request
+  //xmlHttp.open( "GET", url, true ); // 
   //xmlHttp.send( null );
   //return xmlHttp.responseText;
 }
