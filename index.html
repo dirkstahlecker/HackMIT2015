@@ -3,12 +3,26 @@
 <head>
     <title>HackMIT 2015</title>
     <script type="text/javascript" src="travel.js"></script>
+    <script type="text/javascript" src="search.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-    Testing
-    <button id="searchGoBtn" value="search"/>
-
+    <form>
+        <input id="searchText" type="text" />
+    </form>
+    <button id="searchGoBtn" onclick="startImageSearch()">Search</button>
+    <br />
+    <form>
+        <input id="addKey" type="text" />
+        <input id="addValue" type="text" />
+    </form>
+    <button id="populateDatabase" onclick="addObjToDatabase()">Add to Database</button>
+    <br />
     <button id="API_test_btn" onclick="startTravelSearch()">API Test</button>
+    <br />
+    <div id="imageArea">
+
+    </div>
 
 </body>
 </html>
