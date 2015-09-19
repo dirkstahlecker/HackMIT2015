@@ -1,17 +1,20 @@
 var db_var;
 
 function addImage(path) {
-    var html = "<img src=\"" + path + "\" />"
+    var html = "<a href=\" \">";
+    html += "<img src=\"" + path + "\" width=\"400\" height=\"300\" />"
+    html += "</a>";
     $("#imageArea").html(html);
 }
 
 function startImageSearch() {
     console.log('starting image search');
+    $('#imageArea').html("");
     var searchText = $('#searchText').val();
 
     for (var i = 0; i < db_var.images.length; i++) {
         console.log(db_var.images[i]);
-        if (db_var.images[i]) {
+        if (db_var.images[i].tags.indexOf(searchText) > -1) { //tag is found
             addImage(db_var.images[i].filepath);
         }
     }
@@ -34,9 +37,11 @@ $(document).ready(function () {
     //set up the global variable that is the database store
     db_var = {
         "images": [
-            {filepath: "/users/dirk/downloads/bridge.jpg", tags: "bridge"}
+            {filepath: "assets/images/bridge.jpg", tags: "bridge san francisco", location: "sfo"},
+            {filepath: "assets/images/canyon.jpg", tags: "grand canyon arizona", location: "las"}
         ]
     }
+    //TODO: multiple airport supportb
 
 
 
