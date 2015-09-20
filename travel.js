@@ -1,9 +1,9 @@
 function startTravelSearch(destination) {
-  var origin = "BOS"; //TODO: get this
+  var origin = $('#departureCode').val();
 
   var today = new Date();
-  var departure_date = String(today.getFullYear()) + '-' + String(today.getMonth()+1) + '-' + String(today.getDate()); //TODO: specify
-  var return_date = $('#dateText').val();
+  var departure_date = "2015-09-22";//String(today.getFullYear()) + '-' + String(today.getMonth()+1) + '-' + String(today.getDate()); //TODO: specify
+  var return_date = "2015-10-10";//$('#dateText').val();
   var apikey = "bYIxdGBOq7VRuiWIGsvwL12PDMV9TZmU";
   var number_of_results = "10"; 
   var url = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?"
@@ -12,7 +12,7 @@ function startTravelSearch(destination) {
     + "destination=" + destination + "&"
     + "departure_date=" + departure_date + "&"
     + "return_date=" + return_date + "&"
-    + "number_of_results=" + number_of_results;
+    + "number_of_results=" + number_of_results + "&";
 
   console.log(url);
 

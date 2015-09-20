@@ -8,31 +8,32 @@
     <script type="text/javascript" src="clarifai-basic.js"></script>
     <script type="text/javascript" src="classify.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    Return date:
-    <form>
-        <input id="dateText" type="text" value="2015-10-01" />
-    </form>
-    <br />
-    <form>
-        <input id="searchText" type="text" />
-    </form>
-    <button id="searchGoBtn" onclick="startImageSearch()">Search</button>
-    <br />
-    <!--<form>
-        <input id="addKey" type="text" />
-        <input id="addValue" type="text" />
-    </form>
-    <button id="populateDatabase" onclick="addObjToDatabase()">Add to Database</button>-->
-    <br />
-    <button id="API_test_btn" onclick="startTravelSearch()">API Test</button>
-    <br />
-    <div id="imageArea">
+    <div id="mainLayout" class="container-fluid" align="center">
+        <h1>Website Title</h1>
+        <div class="container">
+            <form>
+                <label for="dateText">Return Date:</label> <input id="dateText" type="text" value="2015-10-01" />
+                <label for="Text">Departure Airport Code:</label> <input id="departureCode" type="text" value="BOS" />
+            </form>
+        </div>
+        <br />
+        <div class="container">
+            <form>
+                <input id="searchText" type="text" />
+            </form>
+            <button id="searchGoBtn" class="btn btn-default" onclick="startImageSearch()">Search</button>
+        </div>
+        <br />
+        <div id="imageArea">
 
-    </div>
-    <div id="travelInfo" >
+        </div>
+        <div id="travelInfo" >
 
+        </div>
     </div>
 
 </body>
