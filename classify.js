@@ -11,7 +11,7 @@ function init(){
     positive();
     negative();
     train();
-    predict();
+    predict(); // TODO: move and add parameters for image url 
 }
 
 // send a 'positive' url
@@ -124,10 +124,16 @@ function train(){
 
 // make a prediction on a url with our concept
 function predict(){
+    var options = this.score;
     clarifai.predict(/*'http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'*/'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','hackmit', cb).then(
         promiseResolved,
         promiseRejected 
     );
+}
+
+// adding training data to appropriate list
+function addData() {
+    
 }
 
 function promiseResolved(obj){
@@ -227,11 +233,19 @@ var canyonPositives = [
   'http://www.sunshinehelicopters.com/images/grandcanyon/grand-canyon-np.jpg',
   'http://img2-2.timeinc.net/people/i/2014/sandbox/news/141020/grand-canyon-800.jpg',
   'http://www.travelwest.net/files/large/the-grand-canyon.jpg',
-  '
+  'http://www.travelwest.net/files/large/grand-canyon.jpg',
+  'http://www.andromedatour.sk/files/editor/image/exotika-%20grand%20canyon.jpg',
+  'http://raftarizona.com/blog/wp-content/uploads/2015/06/grand-canyon-800.jpg'
 ];
 
 var canyonNegatives = [
-  
+  'http://www.bostonglobe.com/rf/image_r/Boston/2011-2020/2013/10/06/BostonGlobe.com/Metro/Images/07hackmit07.r.jpg',
+  'http://c.o0bg.com/rf/image_r/Boston/2011-2020/2013/10/06/BostonGlobe.com/Metro/Images/07hackmit05.jpg',
+  'https://d3kfrplp7t05mg.cloudfront.net/cms/2012-02-26/0213_empire_630x420.jpg',
+  'http://www.publicdomainpictures.net/pictures/20000/nahled/empire-state-building.jpg',
+  'http://media2.govtech.com/images/770*1000/shutterstock_golden_gate.jpg',
+  'https://ggb113b.files.wordpress.com/2013/03/golden-gate-bridge_900px.jpg',
+  'https://travelpast50.com/wp-content/uploads/2013/03/golden-gate-bridge.jpg'
 ];
 
 var phishPositives = [
