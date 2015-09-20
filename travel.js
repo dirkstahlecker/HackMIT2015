@@ -5,8 +5,14 @@ function startTravelSearch() {
   var origin = $('#departureCode').val();
   var destination = locationFromKeyword[keyword];
   var today = new Date();
-  var departure_date = makeTodaysDate();
+  var departure_date = $('#departureDate').val();
+  if (departure_date == "") {
+    departure_date = makeTodaysDate();
+  }
   var return_date = $('#dateText').val();
+  if (return_date == "") {
+    return_date = "2015-10-10";
+  }
   var apikey = "bYIxdGBOq7VRuiWIGsvwL12PDMV9TZmU";
   var number_of_results = "10"; 
   var url = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?"
