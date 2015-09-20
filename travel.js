@@ -39,10 +39,17 @@ function outputTravelInfo(data, path) {
         html += '<br /><br /><div class="row fullwidth"><h4>Price: ' + data.results[i].fare.total_price + '</h4>';
         for (var j = 0; j < data.results[i].itineraries[0].outbound.flights.length; ++j) {
             html += '<div class="row">'
+            if (j == 0) {
+                html += '<b>';
+            }
             var flight = data.results[i].itineraries[0].outbound.flights[j];
+            if (j == 0) {
+                html += '</b>';
+            }
+
             html += '<div class="col-md-4 right">';
             html += "From " + flight.origin.airport + "<br /> To " + flight.destination.airport;
-            html += '</div><div class="col-md-4">';
+            html += '</div><div class="col-md-8 left">';
             html += "<div>Departing " + flight.departs_at.substring(0,10) + " at " + flight.departs_at.substring(11,16) + '</div>';
             html += "<div>Arriving " + flight.arrives_at.substring(0,10) + " at " + flight.arrives_at.substring(11,16) + '</div>';
             html += '</div></div>';
