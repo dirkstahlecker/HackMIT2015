@@ -2,8 +2,8 @@ function startTravelSearch(destination, path) {
   var origin = $('#departureCode').val();
 
   var today = new Date();
-  var departure_date = "2015-09-22";//String(today.getFullYear()) + '-' + String(today.getMonth()+1) + '-' + String(today.getDate()); //TODO: specify
-  var return_date = "2015-10-10";//$('#dateText').val();
+  var departure_date = makeTodaysDate();
+  var return_date = $('#dateText').val();
   var apikey = "bYIxdGBOq7VRuiWIGsvwL12PDMV9TZmU";
   var number_of_results = "10"; 
   var url = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?"
@@ -41,8 +41,11 @@ function outputTravelInfo(data, path) {
             html += '<div class="col-md-4 right">';
             html += "From " + flight.origin.airport + "<br /> To " + flight.destination.airport;
             html += '</div><div class="col-md-4">';
-            html += "Departing at " + flight.departs_at + " Arriving at " + flight.arrives_at;
+            html += "<div>Departing " + flight.departs_at.substring(0,10) + " at " + flight.departs_at.substring(11,16) + '</div>';
+            html += "<div>Arriving " + flight.arrives_at.substring(0,10) + " at " + flight.arrives_at.substring(11,16) + '</div>';
             html += '</div></div>';
+            console.log(flight.departs_at);
+            console.log(html);
         }
         html += '</div>';
     }
@@ -52,5 +55,15 @@ function outputTravelInfo(data, path) {
 function addResults(path) {
   var html = "<div src=\"" + path +"\" />";
   $("#searchResultsArea").html(html);
+}
+
+function makeTodaysDate() {
+    var today = new Date();
+    var date = String(today.getFullYear()) + '-';
+    if (today.getMonth() < 10) {
+        date += "0" + String(today.getMonth()+1) + '-';
+    }
+    date += String(today.getDate());
+    return date;
 }
 
