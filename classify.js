@@ -23,6 +23,34 @@ function positive(){
             promiseRejected 
         );
     }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.positive(harvard_bridgePositives[i],'harvardbridge', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.positive(empire_state_buildingPositives[i],'empirestatebuilding', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.positive(hackmitPositives[i],'hackmit', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.positive(canyonPositives[i],'grandcanyon', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
 }
 
 // send a 'negative' url
@@ -34,6 +62,35 @@ function negative(){
             promiseRejected 
         );
     }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.negative(harvard_bridgeNegatives[i],'harvardbridge', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.negative(empire_state_buildingNegatives[i],'empirestatebuilding', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.negative(hackmitNegatives[i],'hackmit', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
+    for (var i = 0; i < set_size; ++i){
+        clarifai.negative(canyonNegatives[i],'grandcanyon', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
+
 }
 
 // explicitly train our concept
@@ -42,22 +99,43 @@ function train(){
         promiseResolved,
         promiseRejected 
     );
+    
+    clarifai.train('harvardbridge', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
+    
+    clarifai.train('empirestatebuilding', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
+
+    clarifai.train('hackmit', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
+
+    clarifai.train('grandcanyon', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
+
 }
 
 // make a prediction on a url with our concept
 function predict(){
-    clarifai.predict(/*'http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'*/'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','ggbridge', cb).then(
+    clarifai.predict(/*'http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'*/'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','hackmit', cb).then(
         promiseResolved,
         promiseRejected 
     );
 }
 
 function promiseResolved(obj){
-    console.log('promiseResolved', obj);
+//    console.log('promiseResolved', obj);
 }
 
 function promiseRejected(obj){
-    console.log('promiseRejected', obj);
+//    console.log('promiseRejected', obj);
 }
 
 function cb(obj){
@@ -115,6 +193,45 @@ var empire_state_buildingPositives = [
 ];
 
 var empire_state_buildingNegatives = [
+  'http://media2.govtech.com/images/770*1000/shutterstock_golden_gate.jpg',
+  'https://ggb113b.files.wordpress.com/2013/03/golden-gate-bridge_900px.jpg',
+  'http://boston.workbar.com/wp-content/uploads/sites/2/2015/07/Harvard_Bridge_from_Cambridge_2009.jpg',
+  'https://slice.mit.edu/wp-content/uploads/2014/10/Harvard_Bridge_1.jpg',
+  'http://www.mit.edu/activities/hillel/images/harvard_bridge.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Harvard_Bridge_and_Prudential_Tower.jpg/1024px-Harvard_Bridge_and_Prudential_Tower.jpg',
+  'https://d3kfrplp7t05mg.cloudfront.net/cms/2012-02-26/0213_empire_630x420.jpg'
+];
+
+var hackmitPositives = [
+  'http://www.bostonglobe.com/rf/image_r/Boston/2011-2020/2013/10/06/BostonGlobe.com/Metro/Images/07hackmit07.r.jpg',
+  'http://c.o0bg.com/rf/image_r/Boston/2011-2020/2013/10/06/BostonGlobe.com/Metro/Images/07hackmit05.jpg',
+  'https://scontent.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/12006195_465040947034520_4516868181427024423_n.jpg?oh=214c8387cc6295a4033e01ccfae20ea9&oe=56A238B4',
+  'https://fbexternal-a.akamaihd.net/safe_image.php?d=AQBiXma622ZjWVjD&w=470&h=246&url=https%3A%2F%2Fscontent.fsnc1-1.fna.fbcdn.net%2Fhphotos-xtf1%2Ft31.0-8%2Fs720x720%2F11234829_436841759854439_6006144642441796496_o.jpg&cfs=1&upscale=1&sx=0&sy=0&sw=720&sh=377',
+  'http://careers.files.geblogs.com/careers/files/2013/10/mitopeningceremony.jpg',
+  'https://pbs.twimg.com/media/CPToLhDVEAAFRcu.jpg:large',
+  'https://pbs.twimg.com/media/CPTnYn6WoAAqr1I.jpg:large'
+];
+
+var hackmitNegatives = [
+  'http://www.cpexecutive.com/wp-content/uploads/2011/09/091511-Empire-State-Building-Picture-EXT-DAY.jpg',
+  'http://onthesetofnewyork.com/locations/sleeplessinseattle/sleepless26.jpg',
+  'https://slice.mit.edu/wp-content/uploads/2014/10/Harvard_Bridge_1.jpg',
+  'https://farm2.staticflickr.com/1257/539853696_5c1cf1a673_z.jpg',
+  'http://media2.govtech.com/images/770*1000/shutterstock_golden_gate.jpg',
+  'https://ggb113b.files.wordpress.com/2013/03/golden-gate-bridge_900px.jpg',
+  'http://inhabitat.com/nyc/wp-content/blogs.dir/2/files/2011/09/empire-state-builiding-leed-gold-1.jpg'
+];
+
+var canyonPositives = [
+  'http://www.papillon.com/acc_img/vault/papillon/img/canyon-hero.jpg',
+  'http://www.sunshinehelicopters.com/images/grandcanyon/grand-canyon-np.jpg',
+  'http://img2-2.timeinc.net/people/i/2014/sandbox/news/141020/grand-canyon-800.jpg',
+  'http://www.travelwest.net/files/large/the-grand-canyon.jpg',
+  '
+];
+
+var canyonNegatives = [
+  
 ];
 
 var phishPositives = [
