@@ -19,6 +19,11 @@ img {
     text-align: center;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 #listingsInfoContainer {
     text-align: center;
 }
+
