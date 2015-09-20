@@ -4,7 +4,7 @@ var clarifai;
 function init(){
     clarifai = new Clarifai(
         {
-            'accessToken': 'g3gnojceDC1Hfzh8Q0bT7nTYyZ70Og'
+            'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
         }
     );
 }
