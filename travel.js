@@ -68,7 +68,7 @@ function determineImage(scores, url) {
     console.log(highest);
     console.log(keyword);
 
-    $('#listingsInfoImage').html('Your Destination:');
+    $('#listingsInfoImage').html('Your Destination:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="startTravelSearch()">Go Here!</a>');
 
     //put images on screen
     addImage(url, 'listingsInfoImage', false);
