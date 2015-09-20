@@ -1,17 +1,21 @@
 var clarifai;
 
+var ran = false;
+
 // on document ready, instantiate the Clarifai object
 function init(){
-    clarifai = new Clarifai(
-        {
-            'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
-        }
-    );
+    if (!ran) { //only run once
+        clarifai = new Clarifai(
+            {
+                'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
+            }
+        );
 
-    positive();
-    negative();
-    train();
-    predict(); // TODO: move and add parameters for image url 
+        positive();
+        negative();
+        train();
+    }
+    ran = true;
 }
 
 // send a 'positive' url
@@ -122,10 +126,41 @@ function train(){
 
 }
 
+var scores = {
+    'harvardbridge': 0,
+    'ggbridge': 0,
+    'empirestatebuilding': 0,
+    'hackmit': 0,
+    'grandcanyon': 0
+};
+
+var completedCallbacks = 0;
+
+function cb_harvardbridge(obj) {
+    scores['harvardbridge'] = obj.score;
+    completedCallbacks++;
+}
+function cb_ggbridge(obj) {
+    scores['ggbridge'] = obj.score;
+    completedCallbacks++;
+}
+function cb_empirestatebuilding(obj) {
+    scores['empirestatebuilding'] = obj.score;
+    completedCallbacks++;
+}
+function cb_hackmit(obj) {
+    scores['hackmit'] = obj.score;
+    completedCallbacks++;
+}
+function cb_grandcanyon(obj) {
+    scores['grandcanyon'] = obj.score;
+    completedCallbacks++;
+}
+
 // make a prediction on a url with our concept
-function predict(){
-    var options = this.score;
-    clarifai.predict(/*'http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'*/'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','hackmit', cb).then(
+function predictHelper(keyword, callback){
+    //TODO: pass in actual url
+    clarifai.predict('http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg',keyword,callback).then(
         promiseResolved,
         promiseRejected 
     );

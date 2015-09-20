@@ -9,7 +9,7 @@ function Clarifai(options){
     this.addDocumentQueue = [];
     this.baseUrl = options.baseUrl || 'https://api-alpha.clarifai.com/v1/';
     this.accessToken = options.accessToken;
-    this.debug = true;
+    this.debug = false;
     if(options.debug === false){
         this.debug = false;
     }
