@@ -7,6 +7,10 @@ function init(){
             'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
         }
     );
+    positive();
+    negative();
+    train();
+    predict();
 }
 
 // send a 'positive' url
