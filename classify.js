@@ -7,7 +7,7 @@ function init(){
     if (!ran) { //only run once
         clarifai = new Clarifai(
             {
-                'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
+                'accessToken': 'UgGjmLuF0qL4bvZA6bEtnWpyg0wf9c'
             }
         );
 
@@ -139,22 +139,39 @@ var completedCallbacks = 0;
 function cb_harvardbridge(obj) {
     scores['harvardbridge'] = obj.score;
     completedCallbacks++;
+    console.log("harvard");
+    var url = $('#searchText').val();
+    predictHelper(url, 'ggbridge', cb_ggbridge);
 }
 function cb_ggbridge(obj) {
     scores['ggbridge'] = obj.score;
     completedCallbacks++;
+    console.log('gg');
+    var url = $('#searchText').val();
+    predictHelper(url, 'empirestatebuilding', cb_empirestatebuilding);
 }
 function cb_empirestatebuilding(obj) {
     scores['empirestatebuilding'] = obj.score;
     completedCallbacks++;
+    console.log('empire');
+    var url = $('#searchText').val();
+    predictHelper(url, 'hackmit', cb_hackmit);
 }
 function cb_hackmit(obj) {
     scores['hackmit'] = obj.score;
     completedCallbacks++;
+    console.log('hackmit');
+    var url = $('#searchText').val();
+    predictHelper(url, 'grandcanyon', cb_grandcanyon);
 }
 function cb_grandcanyon(obj) {
     scores['grandcanyon'] = obj.score;
     completedCallbacks++;
+    console.log('canyon');
+
+    $('#waitingModal').modal('hide');
+    console.log('finished with all predictions!');
+    console.log(scores);
 }
 
 // make a prediction on a url with our concept
@@ -167,22 +184,13 @@ function predictHelper(url, keyword, callback){
 }
 
 function predict() {
+    console.log('Predict');
     var url = $('#searchText').val();
     console.log(url);
 
+    $('#waitingModal').modal('show');
     predictHelper(url, 'harvardbridge', cb_harvardbridge);
-    predictHelper(url, 'ggbridge', cb_ggbridge);
-    predictHelper(url, 'empirestatebuilding', cb_empirestatebuilding);
-    predictHelper(url, 'hackmit', cb_hackmit);
-    predictHelper(url, 'grandcanyon', cb_grandcanyon);
-
-    while (completedCallbacks < 5) { //wait for all callbacks to finish
-
-    }
-
-    $('#waitingModal').modal('hide');
-    console.log('finished with all predictions!');
-    console.log(scores);
+    
 }
 
 // adding training data to appropriate list

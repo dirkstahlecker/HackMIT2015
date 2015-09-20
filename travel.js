@@ -21,13 +21,13 @@ function startTravelSearch(destination, path) {
     type: 'GET',
     success: function (data) {
       console.log('GET request successful');
-      outputTravelInfo(data, path);
+      //outputTravelInfo(data, path);
     }
   });
 }
 
 function outputTravelInfo(data, path) {
-    predict(); // TODO: move and add parameters for image url 
+    //prepredict(); // TODO: move and add parameters for image url 
 
     $('#waitingModal').modal('hide');
     $('#imageArea').html('');
