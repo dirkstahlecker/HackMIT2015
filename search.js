@@ -1,10 +1,30 @@
 var db_var;
 
 function addImage(path) {
-    var html = "<a href=\" \">";
-    html += "<img src=\"" + path + "\" width=\"400\" height=\"300\" />"
+    console.log("adding image");
+    var dest = "";
+
+    for (var i = 0; i < db_var.images.length; i++) {
+        if (db_var.images[i].filepath == path) {
+            dest = db_var.images[i].location;
+        }
+    }
+    if (dest == "") {
+        return;
+    }
+    /*
+    var html = "";
+    html += '<img src="' + path + '" width="400" height="300" onclick="startTravelSearch("' + dest + '")"/>"';
     html += "</a>";
-    $("#imageArea").html(html);
+    var oldhtml = $('#imageArea').html();
+    $("#imageArea").html(oldhtml + html);
+    */
+    jQuery('<img/>', {
+        src: path,
+        width: '400px',
+        height: '300px',
+        onclick: 'startTravelSearch("' + dest + '")'
+    }).appendTo('#imageArea');
 }
 
 function startImageSearch() {
@@ -37,10 +57,11 @@ $(document).ready(function () {
     db_var = {
         "images": [
             {filepath: "assets/images/bridge.jpg", tags: "bridge san francisco", location: "sfo"},
-            {filepath: "assets/images/canyon.jpg", tags: "grand canyon arizona", location: "las"}
+            {filepath: "assets/images/canyon.jpg", tags: "grand canyon arizona", location: "las"},
+            {filepath: "assets/images/bryce.jpg", tags: "bryce canyon utah", location: "las"}
         ]
     }
-    //TODO: multiple airport supportb
+    //TODO: multiple airport support
 
 
 

@@ -6,9 +6,15 @@
     <script type="text/javascript" src="travel.js"></script>
     <script type="text/javascript" src="search.js"></script>
     <script type="text/javascript" src="clarifai-basic.js"></script>
-    <script type="text/javascript" src="example.js"></script>
+    <script type="text/javascript" src="classify.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
+    Return date:
+    <form>
+        <input id="dateText" type="text" value="2015-10-01" />
+    </form>
+    <br />
     <form>
         <input id="searchText" type="text" />
     </form>
@@ -23,6 +29,9 @@
     <button id="API_test_btn" onclick="startTravelSearch()">API Test</button>
     <br />
     <div id="imageArea">
+
+    </div>
+    <div id="travelInfo" >
 
     </div>
 
