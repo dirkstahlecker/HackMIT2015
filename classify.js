@@ -1,56 +1,60 @@
 var clarifai;
 
-// instantiate a new Clarifai object
+// on document ready, instantiate the Clarifai object
 function init(){
-  clarifai = new Clarifai(
-      {
-        'accessToken': 'g3gnojceDC1Hfzh8Q0bT7nTYyZ70Og'
-      }
-      );
+    clarifai = new Clarifai(
+        {
+            'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
+        }
+    );
+    positive();
+    negative();
+    train();
+    predict();
 }
 
 // send a 'positive' url
 function positive(){
-  clarifai.positive('http://thephunion.com/wp-content/uploads/2013/04/Umphreys.jpg', 'phish', cb).then(
-    promiseResolved,
-    promiseRejected 
-      );
+    clarifai.positive('http://thephunion.com/wp-content/uploads/2013/04/Umphreys.jpg', 'phish', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
 }
 
 // send a 'negative' url
 function negative(){
-  clarifai.negative('http://www.mediaspin.com/joel/grateful_dead230582_15-52.jpg', 'phish', cb).then(
-    promiseResolved,
-    promiseRejected 
-      );
+    clarifai.negative('http://www.mediaspin.com/joel/grateful_dead230582_15-52.jpg', 'phish', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
 }
 
 // explicitly train our concept
 function train(){
-  clarifai.train('phish', cb).then(
-      promiseResolved,
-      promiseRejected 
-      );
+    clarifai.train('phish', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
 }
 
 // make a prediction on a url with our concept
 function predict(){
-  clarifai.predict('http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg', 'phish', cb).then(
-    promiseResolved,
-    promiseRejected 
-      );
+    clarifai.predict('http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg', 'phish', cb).then(
+        promiseResolved,
+        promiseRejected 
+    );
 }
 
 function promiseResolved(obj){
-  console.log('promiseResolved', obj);
+    console.log('promiseResolved', obj);
 }
 
 function promiseRejected(obj){
-  console.log('promiseRejected', obj);
+    console.log('promiseRejected', obj);
 }
 
 function cb(obj){
-  console.log('cb', obj);
+    console.log('cb', obj);
 }
 
 var phishPositives = [
@@ -74,15 +78,3 @@ var phishNegatives = [
 ];
 
 $(document).ready(init);
-
-// Give a few positive examples and a name for the custom concept.
-//clarifai.positive('http://example.com/car.jpg', 'car');
-
-// Give a few negative examples and a name for the custom concept.
-//clarifai.negative('http://example.com/not-a-car.jpg', 'car');
-
-// Train the platform on your custom concept.
-//clarifai.train('car');
-
-// Ask for a prediction on a new image with your custom concept.
-//clarifai.predict('http://example.com/a-new-car.jpg', 'car');
