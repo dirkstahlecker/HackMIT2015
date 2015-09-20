@@ -5,3 +5,16 @@ img {
 #searchBox {
     vertical-align: top;
 }
+
+.right {
+    text-align: right;
+}
+
+.fullwidth {
+    width: 100%;
+    text-align: center;
+}
+
+#listingsInfoContainer {
+    text-align: center;
+}

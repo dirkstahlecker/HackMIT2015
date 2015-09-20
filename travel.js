@@ -1,4 +1,4 @@
-function startTravelSearch(destination) {
+function startTravelSearch(destination, path) {
   var origin = $('#departureCode').val();
 
   var today = new Date();
@@ -21,24 +21,32 @@ function startTravelSearch(destination) {
     type: 'GET',
     success: function (data) {
       console.log('GET request successful');
-      outputTravelInfo(data);
+      outputTravelInfo(data, path);
     }
   });
 }
 
-function outputTravelInfo(data) {
+function outputTravelInfo(data, path) {
     $('#waitingModal').modal('hide');
+    $('#imageArea').html('');
     var html = "";
 
+    addImage(path, 'listingsInfoImage', false);
+
     for (var i = 0; i < data.results.length; ++i) {
-        html += '<br /><br /><h4>Price: ' + data.results[i].fare.total_price + '</h4>';
+        html += '<br /><br /><div class="row fullwidth"><h4>Price: ' + data.results[i].fare.total_price + '</h4>';
         for (var j = 0; j < data.results[i].itineraries[0].outbound.flights.length; ++j) {
+            html += '<div class="row">'
             var flight = data.results[i].itineraries[0].outbound.flights[j];
-            html += "From " + flight.origin.airport + " To " + flight.destination.airport + "\nDeparting at ";
-            html += flight.departs_at + " Arriving at " + flight.arrives_at;
+            html += '<div class="col-md-4 right">';
+            html += "From " + flight.origin.airport + "<br /> To " + flight.destination.airport;
+            html += '</div><div class="col-md-4">';
+            html += "Departing at " + flight.departs_at + " Arriving at " + flight.arrives_at;
+            html += '</div></div>';
         }
+        html += '</div>';
     }
-    $('#travelInfo').html(html);
+    $('#listingsInfoText').html(html);
 }
 
 function addResults(path) {

@@ -1,7 +1,6 @@
 var db_var;
 
-function addImage(path) {
-    console.log("adding image");
+function addImage(path, divToAppendTo, onclickTrue) {
     var dest = "";
 
     for (var i = 0; i < db_var.images.length; i++) {
@@ -12,19 +11,22 @@ function addImage(path) {
     if (dest == "") {
         return;
     }
-    /*
-    var html = "";
-    html += '<img src="' + path + '" width="400" height="300" onclick="startTravelSearch("' + dest + '")"/>"';
-    html += "</a>";
-    var oldhtml = $('#imageArea').html();
-    $("#imageArea").html(oldhtml + html);
-    */
-    jQuery('<img/>', {
-        src: path,
-        width: '400px',
-        height: '300px',
-        onclick: 'startTravelSearch("' + dest + '")'
-    }).appendTo('#imageArea');
+
+    if (onclickTrue) {
+        jQuery('<img/>', {
+            src: path,
+            width: '400px',
+            height: '300px',
+            onclick: 'startTravelSearch("' + dest + '", "' + path + '")'
+        }).appendTo('#' + divToAppendTo);
+    }
+    else {
+        jQuery('<img/>', {
+            src: path,
+            width: '400px',
+            height: '300px'
+        }).appendTo('#' + divToAppendTo);
+    }
 }
 
 function startImageSearch() {
@@ -34,7 +36,7 @@ function startImageSearch() {
 
     for (var i = 0; i < db_var.images.length; i++) {
         if (db_var.images[i].tags.indexOf(searchText) > -1) { //tag is found
-            addImage(db_var.images[i].filepath);
+            addImage(db_var.images[i].filepath, 'imageArea', true);
         }
     }
 
