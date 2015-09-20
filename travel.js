@@ -91,7 +91,7 @@ function outputTravelInfo(data) {
     var html = "";
 
     for (var i = 0; i < data.results.length; ++i) {
-        html += '<br /><br /><div class="row fullwidth"><h4>Price: ' + data.results[i].fare.total_price + '</h4>';
+        html += '<br /><br /><div class="row fullwidth"><h4>Price: $' + data.results[i].fare.total_price + '</h4>';
         for (var j = 0; j < data.results[i].itineraries[0].outbound.flights.length; ++j) {
             if (j == 0 || j == data.results[i].itineraries[0].outbound.flights.length) {
                 html += '<div class="row" bold>';
