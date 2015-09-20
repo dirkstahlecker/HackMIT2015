@@ -7,6 +7,7 @@ function init(){
             'accessToken': 'Ui1d9rr2c4WPy0l0wTzEDpQ7lghpbG'
         }
     );
+
     positive();
     negative();
     train();
@@ -15,10 +16,20 @@ function init(){
 
 // send a 'positive' url
 function positive(){
-    clarifai.positive('http://thephunion.com/wp-content/uploads/2013/04/Umphreys.jpg', 'phish', cb).then(
-        promiseResolved,
-        promiseRejected 
-    );
+    var set_size = 7;
+    for (var i = 0; i < set_size; ++i){
+        clarifai.positive(phishPositives[i],'phish', cb).then(
+            promiseResolved,
+            promiseRejected 
+    //clarifai.positive('http://thephunion.com/wp-content/uploads/2013/04/Umphreys.jpg', 'phish', cb).then(
+    //    promiseResolved,
+    //    promiseRejected 
+        );
+        clarifai.negative(phishNegatives[i],'phish', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
 }
 
 // send a 'negative' url
