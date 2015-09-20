@@ -173,14 +173,15 @@ function cb_grandcanyon(obj) {
     console.log('finished with all predictions!');
     console.log(scores);
 
-    determineImage(scores);
+    var url = $('#searchText').val();
+    determineImage(scores, url);
 }
 
 // make a prediction on a url with our concept
 function predictHelper(url, keyword, callback){
     console.log('predictHelper with keyword ' + keyword);
     //TODO: pass in actual url
-    clarifai.predict('http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg',keyword,callback).then(
+    clarifai.predict(url,keyword,callback).then( //http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg
         promiseResolved,
         promiseRejected 
     );

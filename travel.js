@@ -1,3 +1,5 @@
+//called by clicking on image
+
 function startTravelSearch(destination, path) {
   var origin = $('#departureCode').val();
 
@@ -21,7 +23,7 @@ function startTravelSearch(destination, path) {
     type: 'GET',
     success: function (data) {
       console.log('GET request successful');
-      //outputTravelInfo(data, path);
+      outputTravelInfo(data, path);
     }
   });
 }
@@ -44,7 +46,7 @@ var imageFromKeyword = {
     'grandcanyon': 'http://www.papillon.com/acc_img/vault/papillon/img/canyon-hero.jpg'
 }
 
-function determineImage(scores) {
+function determineImage(scores, url) {
     var highest = 0;
     var keyword = "";
     for (var i = 0; i < keywords.length; i++) {
@@ -58,14 +60,14 @@ function determineImage(scores) {
     console.log(keyword);
 
     //put images on screen
-    addImage()//your image
-    if (onclickTrue) {
-        jQuery('<img/>', {
-            src: imageFromKeyword[keyword],
-            width: '400px',
-            height: '300px',
-        }).appendTo('#listingsInfoImage');
-    }
+    addImage(url, 'listingsInfoImage', false);
+    jQuery('<img/>', {
+        src: imageFromKeyword[keyword],
+        width: '400px',
+        height: '300px',
+    }).appendTo('#listingsInfoImage');
+
+    $('#showTravelBtn').show();
 }
 
 function outputTravelInfo(data, path) {
