@@ -158,12 +158,41 @@ function cb_grandcanyon(obj) {
 }
 
 // make a prediction on a url with our concept
-function predictHelper(keyword, callback){
-    //TODO: pass in actual url
-    clarifai.predict('http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg',keyword,callback).then(
+function predictHelper(url, keyword, callback){
+    //TODO: pass in actual urlu
+    clarifai.predict(url,keyword,callback).then(
         promiseResolved,
         promiseRejected 
     );
+}
+
+function uploadAndPredict() {
+    console.log('uploadAndPredict');
+    
+    $('#waitingModal').modal('show');
+
+    var url = $('#searchText').val();
+    console.log(url);
+    predictHelper(url, 'harvardbridge', cb_harvardbridge);
+    predictHelper(url, 'ggbridge', cb_ggbridge);
+    predictHelper(url, 'empirestatebuilding', cb_empirestatebuilding);
+    predictHelper(url, 'hackmit', cb_hackmit);
+    predictHelper(url, 'grandcanyon', cb_grandcanyon);
+
+    /*while (completedCallbacks < 5) { //wait for all callbacks to finish
+
+    }
+*/
+    var match = {score: 0, keyword: ''};
+    var keywords = ['harvardbridge', 'ggbridge', 'grandcanyon', 'empirestatebuilding', 'hackmit'];
+    for (var i = 0; i < keywords.length; i++) {
+        if (scores[keywords[i]] > match.score) {
+            match.score = scores[keywords[i]];
+            match.keyword = keyword[i];
+        }
+    }
+    console.log(match);
+    addImage(match.keyword, 'imageArea', true);
 }
 
 // adding training data to appropriate list

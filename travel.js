@@ -15,7 +15,7 @@ function startTravelSearch(destination, path) {
     + "number_of_results=" + number_of_results + "&";
 
   console.log(url);
-  $('#waitingModal').modal('show');
+  
   $.ajax({
     url: url,
     type: 'GET',
@@ -27,22 +27,11 @@ function startTravelSearch(destination, path) {
 }
 
 function outputTravelInfo(data, path) {
-    predict(); // TODO: move and add parameters for image url 
-
-    predictHelper('harvardbridge', cb_harvardbridge);
-    predictHelper('ggbridge', cb_ggbridge);
-    predictHelper('empirestatebuilding', cb_empirestatebuilding);
-    predictHelper('hackmit', cb_hackmit);
-    predictHelper('grandcanyon', cb_grandcanyon);
-
-    while (completedCallbacks < 5) { //wait for all callbacks to finish
-
-    }
+    //predict(); // TODO: move and add parameters for image url 
 
     $('#waitingModal').modal('hide');
     console.log('finished with all predictions!');
     console.log(scores);
-}
 
     $('#imageArea').html('');
     var html = "";
