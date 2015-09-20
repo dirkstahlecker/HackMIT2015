@@ -38,16 +38,13 @@ function outputTravelInfo(data, path) {
     for (var i = 0; i < data.results.length; ++i) {
         html += '<br /><br /><div class="row fullwidth"><h4>Price: ' + data.results[i].fare.total_price + '</h4>';
         for (var j = 0; j < data.results[i].itineraries[0].outbound.flights.length; ++j) {
-            if (j == 0) {
+            if (j == 0 || j == data.results[i].itineraries[0].outbound.flights.length) {
                 html += '<div class="row" bold>';
             } else {
                 html += '<div class="row">';
             }
 
             var flight = data.results[i].itineraries[0].outbound.flights[j];
-            if (j == 0) {
-                html += '</b>';
-            }
 
             html += '<div class="col-md-4 right">';
             html += "From " + flight.origin.airport + "<br /> To " + flight.destination.airport;
