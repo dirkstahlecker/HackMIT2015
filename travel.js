@@ -1,8 +1,9 @@
 //called by clicking on image
 
-function startTravelSearch(destination, path) {
+function startTravelSearch() {
+  console.log('in startTravelSearch');
   var origin = $('#departureCode').val();
-
+  var destination = locationFromKeyword[keyword];
   var today = new Date();
   var departure_date = makeTodaysDate();
   var return_date = $('#dateText').val();
@@ -23,7 +24,7 @@ function startTravelSearch(destination, path) {
     type: 'GET',
     success: function (data) {
       console.log('GET request successful');
-      outputTravelInfo(data, path);
+      outputTravelInfo(data);
     }
   });
 }
@@ -46,9 +47,17 @@ var imageFromKeyword = {
     'grandcanyon': 'http://www.papillon.com/acc_img/vault/papillon/img/canyon-hero.jpg'
 }
 
+var locationFromKeyword = {
+    'harvardbridge': 'bos',
+    'ggbridge': 'sfo',
+    'empirestatebuilding': 'jfk',
+    'hackmit': 'bos',
+    'grandcanyon': 'las'
+}
+
+var keyword = "";
 function determineImage(scores, url) {
     var highest = 0;
-    var keyword = "";
     for (var i = 0; i < keywords.length; i++) {
         if (highest < scores[keywords[i]]) {
             highest = scores[keywords[i]];
@@ -59,6 +68,8 @@ function determineImage(scores, url) {
     console.log(highest);
     console.log(keyword);
 
+    $('#listingsInfoImage').html('Your Destination:');
+
     //put images on screen
     addImage(url, 'listingsInfoImage', false);
     jQuery('<img/>', {
@@ -67,17 +78,11 @@ function determineImage(scores, url) {
         height: '300px',
     }).appendTo('#listingsInfoImage');
 
-    $('#showTravelBtn').show();
 }
 
-function outputTravelInfo(data, path) {
-    //prepredict(); // TODO: move and add parameters for image url 
-
+function outputTravelInfo(data) {
     $('#waitingModal').modal('hide');
-    $('#imageArea').html('');
     var html = "";
-
-    addImage(path, 'listingsInfoImage', false);
 
     for (var i = 0; i < data.results.length; ++i) {
         html += '<br /><br /><div class="row fullwidth"><h4>Price: ' + data.results[i].fare.total_price + '</h4>';
