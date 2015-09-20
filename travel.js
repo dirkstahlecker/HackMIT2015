@@ -27,7 +27,23 @@ function startTravelSearch(destination, path) {
 }
 
 function outputTravelInfo(data, path) {
+    predict(); // TODO: move and add parameters for image url 
+
+    predictHelper('harvardbridge', cb_harvardbridge);
+    predictHelper('ggbridge', cb_ggbridge);
+    predictHelper('empirestatebuilding', cb_empirestatebuilding);
+    predictHelper('hackmit', cb_hackmit);
+    predictHelper('grandcanyon', cb_grandcanyon);
+
+    while (completedCallbacks < 5) { //wait for all callbacks to finish
+
+    }
+
     $('#waitingModal').modal('hide');
+    console.log('finished with all predictions!');
+    console.log(scores);
+}
+
     $('#imageArea').html('');
     var html = "";
 
@@ -51,8 +67,6 @@ function outputTravelInfo(data, path) {
             html += "<div>Departing " + flight.departs_at.substring(0,10) + " at " + flight.departs_at.substring(11,16) + '</div>';
             html += "<div>Arriving " + flight.arrives_at.substring(0,10) + " at " + flight.arrives_at.substring(11,16) + '</div>';
             html += '</div></div>';
-            console.log(flight.departs_at);
-            console.log(html);
         }
         html += '</div>';
     }
