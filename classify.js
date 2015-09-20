@@ -18,14 +18,7 @@ function init(){
 function positive(){
     var set_size = 7;
     for (var i = 0; i < set_size; ++i){
-        clarifai.positive(phishPositives[i],'phish', cb).then(
-            promiseResolved,
-            promiseRejected 
-    //clarifai.positive('http://thephunion.com/wp-content/uploads/2013/04/Umphreys.jpg', 'phish', cb).then(
-    //    promiseResolved,
-    //    promiseRejected 
-        );
-        clarifai.negative(phishNegatives[i],'phish', cb).then(
+        clarifai.positive(phishPositives[i]/*golden_gate_bridgePositives[i]*/,'golden gate bridge', cb).then(
             promiseResolved,
             promiseRejected 
         );
@@ -34,15 +27,18 @@ function positive(){
 
 // send a 'negative' url
 function negative(){
-    clarifai.negative('http://www.mediaspin.com/joel/grateful_dead230582_15-52.jpg', 'phish', cb).then(
-        promiseResolved,
-        promiseRejected 
-    );
+    var set_size = 7;
+    for (var i = 0; i < set_size; ++i){
+        clarifai.negative(phishNegatives[i]/*golden_gate_bridgeNegatives[i]*/,'golden gate bridge', cb).then(
+            promiseResolved,
+            promiseRejected 
+        );
+    }
 }
 
 // explicitly train our concept
 function train(){
-    clarifai.train('phish', cb).then(
+    clarifai.train('golden gate bridge', cb).then(
         promiseResolved,
         promiseRejected 
     );
@@ -50,7 +46,7 @@ function train(){
 
 // make a prediction on a url with our concept
 function predict(){
-    clarifai.predict('http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg', 'phish', cb).then(
+    clarifai.predict('http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'/*'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','golden gate bridge'*/, cb).then(
         promiseResolved,
         promiseRejected 
     );
@@ -67,6 +63,59 @@ function promiseRejected(obj){
 function cb(obj){
     console.log('cb', obj);
 }
+
+var golden_gate_bridgePositives = [
+  'http://www.travlang.com/blog/wp-content/uploads/2010/04/golden-gate.jpg',
+  'http://blog.westinteractive.com/wp-content/uploads/GoldenGateBridge_shutterstock114141715.jpg',
+  'http://mostfamouslandmarks.com/wp-content/gallery/goldengate/Golden-Gate-Bridge-Clouds-Photography.jpg',
+  'https://media-cdn.tripadvisor.com/media/photo-s/06/d9/68/92/gg-bridge-from-fort-point.jpg',
+  'http://media2.govtech.com/images/770*1000/shutterstock_golden_gate.jpg',
+  'https://ggb113b.files.wordpress.com/2013/03/golden-gate-bridge_900px.jpg',
+  'https://travelpast50.com/wp-content/uploads/2013/03/golden-gate-bridge.jpg'
+];
+
+var golden_gate_bridgeNegatives = [
+  'http://www.mit.edu/activities/hillel/images/harvard_bridge.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Harvard_Bridge_and_Prudential_Tower.jpg/1024px-Harvard_Bridge_and_Prudential_Tower.jpg',
+  'http://boston.workbar.com/wp-content/uploads/sites/2/2015/07/Harvard_Bridge_from_Cambridge_2009.jpg',
+  'https://slice.mit.edu/wp-content/uploads/2014/10/Harvard_Bridge_1.jpg',
+  'http://www.esbnyc.com/sites/default/files/styles/timely_content_image_large__885x590_/public/default_images/brs_0330.jpg?itok=LvqTWQyo',
+  'http://www.cpexecutive.com/wp-content/uploads/2011/09/091511-Empire-State-Building-Picture-EXT-DAY.jpg',
+  'https://d3kfrplp7t05mg.cloudfront.net/cms/2012-02-26/0213_empire_630x420.jpg'
+];
+
+var harvard_bridgePositives = [
+  'http://www.mit.edu/activities/hillel/images/harvard_bridge.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Harvard_Bridge_and_Prudential_Tower.jpg/1024px-Harvard_Bridge_and_Prudential_Tower.jpg',
+  'http://boston.workbar.com/wp-content/uploads/sites/2/2015/07/Harvard_Bridge_from_Cambridge_2009.jpg',
+  'https://slice.mit.edu/wp-content/uploads/2014/10/Harvard_Bridge_1.jpg',
+  'https://farm2.staticflickr.com/1257/539853696_5c1cf1a673_z.jpg',
+  'http://www.nanolab.uc.edu/Photos/Memories/harvard%20bridge.jpg',
+  'http://www.biodiversidadvirtual.org/etno/data/media/958/Harvard-Bridge-MIT-Bridge-%28Boston%29-9424.jpg'
+];
+
+var harvard_bridgeNegatives = [
+  'http://www.travlang.com/blog/wp-content/uploads/2010/04/golden-gate.jpg',
+  'http://blog.westinteractive.com/wp-content/uploads/GoldenGateBridge_shutterstock114141715.jpg',
+  'http://media2.govtech.com/images/770*1000/shutterstock_golden_gate.jpg',
+  'http://www.cpexecutive.com/wp-content/uploads/2011/09/091511-Empire-State-Building-Picture-EXT-DAY.jpg',
+  'http://www.cpexecutive.com/wp-content/uploads/2011/09/091511-Empire-State-Building-Picture-EXT-DAY.jpg',
+  'https://d3kfrplp7t05mg.cloudfront.net/cms/2012-02-26/0213_empire_630x420.jpg',
+  'https://ggb113b.files.wordpress.com/2013/03/golden-gate-bridge_900px.jpg'
+];
+
+var empire_state_buildingPositives = [
+  'http://www.esbnyc.com/sites/default/files/styles/timely_content_image_large__885x590_/public/default_images/brs_0330.jpg?itok=LvqTWQyo',
+  'http://www.cpexecutive.com/wp-content/uploads/2011/09/091511-Empire-State-Building-Picture-EXT-DAY.jpg',
+  'http://onthesetofnewyork.com/locations/sleeplessinseattle/sleepless26.jpg',
+  'http://blogs.voanews.com/tedlandphairsamerica/files/2012/05/looming-cmh2.jpg',
+  'https://d3kfrplp7t05mg.cloudfront.net/cms/2012-02-26/0213_empire_630x420.jpg',
+  'http://www.publicdomainpictures.net/pictures/20000/nahled/empire-state-building.jpg',
+  'http://inhabitat.com/nyc/wp-content/blogs.dir/2/files/2011/09/empire-state-builiding-leed-gold-1.jpg'
+];
+
+var empire_state_buildingNegatives = [
+];
 
 var phishPositives = [
   'http://clarifai-test.s3.amazonaws.com/phish/positive/3652848536_c72244dc88_o.jpg',
