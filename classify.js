@@ -18,7 +18,7 @@ function init(){
 function positive(){
     var set_size = 7;
     for (var i = 0; i < set_size; ++i){
-        clarifai.positive(phishPositives[i]/*golden_gate_bridgePositives[i]*/,'golden gate bridge', cb).then(
+        clarifai.positive(/*phishPositives[i]*/golden_gate_bridgePositives[i],'ggbridge', cb).then(
             promiseResolved,
             promiseRejected 
         );
@@ -29,7 +29,7 @@ function positive(){
 function negative(){
     var set_size = 7;
     for (var i = 0; i < set_size; ++i){
-        clarifai.negative(phishNegatives[i]/*golden_gate_bridgeNegatives[i]*/,'golden gate bridge', cb).then(
+        clarifai.negative(/*phishNegatives[i]*/golden_gate_bridgeNegatives[i],'ggbridge', cb).then(
             promiseResolved,
             promiseRejected 
         );
@@ -38,7 +38,7 @@ function negative(){
 
 // explicitly train our concept
 function train(){
-    clarifai.train('golden gate bridge', cb).then(
+    clarifai.train('ggbridge', cb).then(
         promiseResolved,
         promiseRejected 
     );
@@ -46,7 +46,7 @@ function train(){
 
 // make a prediction on a url with our concept
 function predict(){
-    clarifai.predict('http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'/*'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','golden gate bridge'*/, cb).then(
+    clarifai.predict(/*'http://farm3.static.flickr.com/2161/2141620332_2b741028b3.jpg'*/'http://www.jimcoda.com/data/photos/894_1_o1a7285_golden_gate_bridge.jpg','ggbridge', cb).then(
         promiseResolved,
         promiseRejected 
     );
