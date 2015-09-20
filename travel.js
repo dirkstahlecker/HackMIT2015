@@ -22,11 +22,25 @@ function startTravelSearch() {
       console.log('GET request successful');
       console.log(data);
       
+      for (var i = 0; i < data.results.length; ++i) {
+        console.log(data.results[i].fare.total_price);
+        for (var j = 0; j < data.results[i].itineraries[0].outbound.flights.length; ++j) {
+          console.log(data.results[i].itineraries[0].outbound.flights[j]);
+        }
+        for (var k = 0; k < data.results[i].itineraries[0].inbound.flights.length; ++k) {
+            console.log(data.results[i].itineraries[0].inbound.flights[k]);
+        }
+      }
     }
   });
   //var xmlHttp = new XMLHttpRequest();
   //xmlHttp.open( "GET", url, true ); // 
   //xmlHttp.send( null );
   //return xmlHttp.responseText;
+}
+
+function addResults(path) {
+  var html = "<div src=\"" + path +"\" />";
+  $("#searchResultsArea").html(html);
 }
 

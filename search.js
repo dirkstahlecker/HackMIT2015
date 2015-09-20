@@ -13,7 +13,6 @@ function startImageSearch() {
     var searchText = $('#searchText').val();
 
     for (var i = 0; i < db_var.images.length; i++) {
-        console.log(db_var.images[i]);
         if (db_var.images[i].tags.indexOf(searchText) > -1) { //tag is found
             addImage(db_var.images[i].filepath);
         }
