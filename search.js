@@ -27,6 +27,7 @@ function addImage(path, divToAppendTo, onclickTrue) {
             height: '300px'
         }).appendTo('#' + divToAppendTo);
     }
+
 }
 
 function startImageSearch() {

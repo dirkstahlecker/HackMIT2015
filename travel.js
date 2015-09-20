@@ -26,6 +26,48 @@ function startTravelSearch(destination, path) {
   });
 }
 
+/*var scores = {
+    'harvardbridge': 0,
+    'ggbridge': 0,
+    'empirestatebuilding': 0,
+    'hackmit': 0,
+    'grandcanyon': 0
+};*/
+
+var keywords = ['harvardbridge', 'ggbridge', 'empirestatebuilding', 'hackmit', 'grandcanyon'];
+
+var imageFromKeyword = {
+    'harvardbridge': 'http://www.mit.edu/activities/hillel/images/harvard_bridge.jpg',
+    'ggbridge': 'http://www.travlang.com/blog/wp-content/uploads/2010/04/golden-gate.jpg',
+    'empirestatebuilding': 'http://www.cpexecutive.com/wp-content/uploads/2011/09/091511-Empire-State-Building-Picture-EXT-DAY.jpg',
+    'hackmit': 'http://www.bostonglobe.com/rf/image_r/Boston/2011-2020/2013/10/06/BostonGlobe.com/Metro/Images/07hackmit07.r.jpg',
+    'grandcanyon': 'http://www.papillon.com/acc_img/vault/papillon/img/canyon-hero.jpg'
+}
+
+function determineImage(scores) {
+    var highest = 0;
+    var keyword = "";
+    for (var i = 0; i < keywords.length; i++) {
+        if (highest < scores[keywords[i]]) {
+            highest = scores[keywords[i]];
+            keyword = keywords[i];
+        }
+    }
+
+    console.log(highest);
+    console.log(keyword);
+
+    //put images on screen
+    addImage()//your image
+    if (onclickTrue) {
+        jQuery('<img/>', {
+            src: imageFromKeyword[keyword],
+            width: '400px',
+            height: '300px',
+        }).appendTo('#listingsInfoImage');
+    }
+}
+
 function outputTravelInfo(data, path) {
     //prepredict(); // TODO: move and add parameters for image url 
 
