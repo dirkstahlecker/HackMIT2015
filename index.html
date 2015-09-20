@@ -9,6 +9,10 @@
     <script type="text/javascript" src="classify.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,11 +25,9 @@
             </form>
         </div>
         <br />
-        <div class="container">
-            <form>
-                <input id="searchText" type="text" />
-            </form>
-            <button id="searchGoBtn" class="btn btn-default" onclick="startImageSearch()">Search</button>
+        <div class="container" id="searchBox">
+            <input id="searchText" type="text" />
+            <button id="searchGoBtn" class="btn btn-primary btn-sm" onclick="startImageSearch()">Search</button>
         </div>
         <br />
         <div id="imageArea">
@@ -35,6 +37,22 @@
 
         </div>
     </div>
+
+
+    <!-- Waiting for data modal -->
+    <div id="waitingModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Waiting for your data to load...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 </body>
 </html>
